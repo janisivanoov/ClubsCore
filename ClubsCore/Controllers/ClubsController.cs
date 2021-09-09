@@ -20,6 +20,7 @@ namespace ClubsCore.Controllers
         {
         }
 
+        //TEST
         //TODO: Add using FilterForClub
         /*
         [HttpGet]
@@ -42,6 +43,16 @@ namespace ClubsCore.Controllers
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
             _logger.LogInfo($"Returned {students.TotalCount} owners from database.");     //??????
             return Ok(students);
+        }
+        */
+
+        //FILTER WHICH WORKS USING ONLY IDATAREPOSITORY:
+        /*
+        [HttpPost]
+        [Route("GetAll")]
+        public List<T> GetAll<T>(Student KeyDataForStudent)
+        {
+            return _repository.GetAll();
         }
         */
 

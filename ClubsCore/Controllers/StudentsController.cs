@@ -44,6 +44,16 @@ namespace ClubsCore.Controllers
         }
         */
 
+        //FILTER WHICH WORKS USING ONLY IDATAREPOSITORY:
+        /*
+        [HttpPost]
+        [Route("GetAll")]
+        public List<T> GetAll<T>(Student KeyDataForStudent)
+        {
+            return _repository.GetAll();
+        }
+        */
+
         /// <summary>
         /// GetAll
         /// </summary>
