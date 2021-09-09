@@ -29,7 +29,7 @@ namespace ClubsCore.Controllers
             {
                 return BadRequest("Max year of birth cannot be less than min year of birth");
             }
-            var students = _context.Students.GetStudent(studentParameters);   //?????????????
+            var students = _context.Students.GetStudent(studentParameters);
             var metadata = new
             {
                 owners.TotalCount,
@@ -40,7 +40,7 @@ namespace ClubsCore.Controllers
                 owners.HasPrevious
             };
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
-            _logger.LogInfo($"Returned {students.TotalCount} owners from database.");     //????????????
+            _logger.LogInfo($"Returned {students.TotalCount} owners from database.");
             return Ok(students);
         }
         */
