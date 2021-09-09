@@ -40,7 +40,7 @@ namespace ClubsCore.Controllers
                 owners.HasPrevious
             };
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
-            _logger.LogInfo($"Returned {students.TotalCount} owners from database.");     //??????
+            _logger.LogInfo($"Returned {students.TotalCount} owners from database.");     //????????????
             return Ok(students);
         }
         */

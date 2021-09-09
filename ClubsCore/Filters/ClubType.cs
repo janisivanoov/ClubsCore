@@ -2,8 +2,8 @@
 {
     public enum ClubType
     {
-        Domestic,
-        Savings,
-        Foreign
+        Academic,
+        Sport,
+        Other
     }
 }
