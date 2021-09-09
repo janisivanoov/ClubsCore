@@ -20,7 +20,7 @@ namespace ClubsCore.Controllers
         {
         }
 
-        //TEST
+        //TEST123
         //TODO: Add using FilterForClub
         /*
         [HttpGet]
