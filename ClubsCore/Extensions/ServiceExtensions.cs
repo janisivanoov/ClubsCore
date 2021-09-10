@@ -33,9 +33,9 @@ namespace AccountOwnerServer.Extensions
         }
 
         /*
-        public static void ConfigureMySqlContext(this IServiceCollection services, IConfiguration config)
+        public static void ConfigureMySqlContext(this IServiceCollection services, Configuration config)
         {
-            var connectionString = config["ConnectionString:ClubsDb"];
+            var connectionString = config["ConnectionString:ClubsDb"]; //????????
             services.AddDbContext<RepositoryContext>(o => o.UseMySql(connectionString));
         }
         */

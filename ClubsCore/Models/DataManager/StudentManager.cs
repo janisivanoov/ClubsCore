@@ -46,25 +46,5 @@ namespace ClubsCore.Models.DataManager
             _clubsContext.Students.Remove(student);
             _clubsContext.SaveChanges();
         }
-
-        /*
-        public PagedList<Student> GetStudent(Student_Parameters studentParameters)
-        {
-            var students = FindByCondition(o => o.DateOfBirth.Year >= studentParameters.MinYearOfBirth &&
-                                        o.DateOfBirth.Year <= studentParameters.MaxYearOfBirth)
-                                    .OrderBy(on => on.FirstName);
-            SearchByName(ref students, studentParameters.Name);
-
-            return PagedList<Student>.ToPagedList(students,
-                studentParameters.PageNumber,
-                studentParameters.PageSize);
-        }
-        private void SearchByName(ref IQueryable<Student> students, string studentName)
-        {
-            if (!students.Any() || string.IsNullOrWhiteSpace(studentName))
-                return;
-            students = students.Where(o => o.Name.ToLower().Contains(ownerName.Trim().ToLower()));
-        }
-        */
     }
 }

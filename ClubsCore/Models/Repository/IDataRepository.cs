@@ -14,7 +14,5 @@ namespace ClubsCore.Models.Repository
         void Update(TEntity dbEntity, TEntity entity);
 
         void Delete(TEntity entity);
-
-        //public PagedList<Student> GetStudent(Student_Parameters studentParameters);
     }
 }
