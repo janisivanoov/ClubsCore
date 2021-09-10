@@ -1,4 +1,6 @@
 ﻿using ClubsCore.Models;
+using ClubsCore.Paging;
+using ClubsCore.Parameters;
 using System.Collections.Generic;
 
 namespace Contracts
@@ -16,5 +18,7 @@ namespace Contracts
         void Updatestudent(Student student);
 
         void Deletestudent(Student student);
+
+        public PagedList<Student> GetStudents(StudentParameters studentParameters);
     }
 }

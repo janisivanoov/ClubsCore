@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using ClubsCore.Contracts;
 using ClubsCore.Mapping;
 using ClubsCore.Mapping.DTO;
 using ClubsCore.Models;
 using ClubsCore.Paging;
+using Contracts;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -15,8 +17,8 @@ namespace ClubsCore.Controllers
 {
     public class ClubsController : ApiControllerBase
     {
-        public ClubsController(ClubsContext context, IMapper mapper)
-            : base(context, mapper)
+        public ClubsController(ClubsContext context, IMapper mapper, ILoggerManager logger, IRepositoryWrapper repository)
+            : base(context, mapper, logger, repository)
         {
         }
 

@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using ClubsCore.Contracts;
 using ClubsCore.Models;
 using ClubsCore.Paging;
+using ClubsCore.Parameters;
+using Contracts;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,46 +17,35 @@ namespace ClubsCore.Controllers
 {
     public class StudentsController : ApiControllerBase
     {
-        public StudentsController(ClubsContext context, IMapper mapper)
-            : base(context, mapper)
+        public StudentsController(ClubsContext context, IMapper mapper, ILoggerManager logger, IRepositoryWrapper repository)
+            : base(context, mapper, logger, repository)
         {
         }
 
-        //TODO: Add FilterForStudent
-
-        /*
+        /// <summary>
+        /// Filter
+        /// </summary>
         [HttpGet]
-        public IActionResult GetStudent([FromQuery] Student_Parameters studentParameters)
+        public IActionResult GetStudent([FromQuery] StudentParameters studentParameters)
         {
             if (!studentParameters.ValidYearRange)
             {
                 return BadRequest("Max year of birth cannot be less than min year of birth");
             }
-            var students = _context.Students.GetStudent(studentParameters);   //?????????????
+            var students = _repository.student.GetStudents(studentParameters);
             var metadata = new
             {
-                owners.TotalCount,
-                owners.PageSize,
-                owners.CurrentPage,
-                owners.TotalPages,
-                owners.HasNext,
-                owners.HasPrevious
+                students.TotalCount,
+                students.PageSize,
+                students.CurrentPage,
+                students.TotalPages,
+                students.HasNext,
+                students.HasPrevious
             };
             Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
-            _logger.LogInfo($"Returned {students.TotalCount} owners from database.");     //??????
+            _logger.LogInfo($"Returned {students.TotalCount} owners from database.");
             return Ok(students);
         }
-        */
-
-        //FILTER WHICH WORKS USING ONLY IDATAREPOSITORY:
-        /*
-        [HttpPost]
-        [Route("GetAll")]
-        public List<T> GetAll<T>(Student KeyDataForStudent)
-        {
-            return _repository.GetAll();
-        }
-        */
 
         /// <summary>
         /// GetAll

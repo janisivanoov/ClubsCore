@@ -1,4 +1,6 @@
 ﻿using ClubsCore.Models;
+using ClubsCore.Paging;
+using ClubsCore.Parameters;
 using ClubsCore.Repository;
 using Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +49,16 @@ namespace Repository
         public void Deletestudent(Student student)
         {
             Delete(student);
+        }
+
+        public PagedList<Student> GetStudents(StudentParameters studentParameters)
+        {
+            var owners = FindByCondition(o => o.BirthDate.Year >= studentParameters.MinYearOfBirth &&
+                                        o.BirthDate.Year <= studentParameters.MaxYearOfBirth)
+                                    .OrderBy(on => on.FirstName);
+            return PagedList<Student>.ToPagedList(owners,
+                studentParameters.PageNumber,
+                studentParameters.PageSize);
         }
     }
 }
