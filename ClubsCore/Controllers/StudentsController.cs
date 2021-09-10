@@ -11,8 +11,13 @@ using System.Threading.Tasks;
 
 namespace ClubsCore.Controllers
 {
-    public class StudentsController : ApiControllerBase
+    //[Route("[controller]")]
+    //[ApiController]
+    public class StudentsController : ApiControllerBase /*ControllerBase*/
     {
+        //private readonly IDataRepository<Student> _dataRepository;
+        //private readonly IMapper _mapper;
+
         public StudentsController(ClubsContext context, IMapper mapper)
             : base(context, mapper)
         {

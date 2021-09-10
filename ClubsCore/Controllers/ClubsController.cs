@@ -13,12 +13,17 @@ using System.Threading.Tasks;
 
 namespace ClubsCore.Controllers
 {
-    public class ClubsController : ApiControllerBase
+    //[Route("[controller]")]
+    //[ApiController]
+    public class ClubsController : ApiControllerBase /*ControllerBase*/
     {
         public ClubsController(ClubsContext context, IMapper mapper)
             : base(context, mapper)
         {
         }
+
+        //private readonly IDataRepository<Club> _dataRepository;
+        //private readonly IMapper _mapper;
 
         //TODO: Add using FilterForClub
         /*
