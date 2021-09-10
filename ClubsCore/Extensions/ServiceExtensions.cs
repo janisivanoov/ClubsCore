@@ -1,14 +1,9 @@
-﻿//using Contracts;
-//using Entities;
-//using LoggerService;
-using ClubsCore.Contracts;
+﻿using ClubsCore.Contracts;
 using ClubsCore.LoggerService;
 using Contracts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Repository;
-
-//using Repository;
 
 namespace AccountOwnerServer.Extensions
 {
