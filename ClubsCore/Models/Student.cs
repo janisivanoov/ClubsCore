@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ClubsCore.Models
@@ -15,5 +16,7 @@ namespace ClubsCore.Models
         public DateTime BirthDate { get; set; }
 
         public string Password { get; set; }
+
+        public ICollection<Club> Club { get; set; }
     }
 }
