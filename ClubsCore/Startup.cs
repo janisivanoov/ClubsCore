@@ -1,14 +1,17 @@
+using AccountOwnerServer.Extensions;
 using ClubsCore.Mapping;
 using ClubsCore.Models;
 using ClubsCore.Models.DataManager;
 using ClubsCore.Models.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using NLog;
 using System;
 using System.IO;
 using System.Reflection;
@@ -19,6 +22,7 @@ namespace ClubsCore
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/log.config"));
             Configuration = configuration;
         }
 
@@ -35,7 +39,7 @@ namespace ClubsCore
                   .EnableSensitiveDataLogging()
                   .EnableDetailedErrors()
           );
-            //services.AddDbContext<ClubsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:ClubsDb"]));
+            services.AddDbContext<ClubsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:ClubsDb"]));
             services.AddScoped<IDataRepository<Club>, ClubManager>();
             services.AddScoped<IDataRepository<Student>, StudentManager>();
 
@@ -66,6 +70,10 @@ namespace ClubsCore
             services.AddControllers();
 
             services.AddSwaggerGen();
+
+            services.ConfigureCors();
+
+            services.ConfigureIISIntegration();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -84,7 +92,20 @@ namespace ClubsCore
 
             app.UseRouting();
 
+            app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
             app.UseAuthorization();
+
+            app.UseCors("CorsPolicy");
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.All
+            });
 
             app.UseEndpoints(endpoints =>
             {
