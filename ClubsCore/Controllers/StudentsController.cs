@@ -25,6 +25,7 @@ namespace ClubsCore.Controllers
         /// <summary>
         /// Filter
         /// </summary>
+        //To try use /api/owner?maxYearOfBirth=1997
         [HttpGet]
         public IActionResult GetStudent([FromQuery] StudentParameters studentParameters)
         {
