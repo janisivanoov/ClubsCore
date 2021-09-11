@@ -29,21 +29,24 @@ namespace ClubsCore.Controllers
         [HttpGet]
         public IActionResult GetStudent([FromQuery] StudentParameters studentParameters)
         {
-            if (!studentParameters.ValidYearRange)
+            if (false == studentParameters.IsValidYearRange)
             {
                 return BadRequest("Max year of birth cannot be less than min year of birth");
             }
             var students = _repository.student.GetStudents(studentParameters);
-            var metadata = new
+            var meta = new
             {
-                students.TotalCount,
                 students.PageSize,
                 students.CurrentPage,
-                students.TotalPages,
+                students.TotalPages
+            };
+            var entries = new
+            {
+                students.TotalCount,
                 students.HasNext,
                 students.HasPrevious
             };
-            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(metadata));
+            Response.Headers.Add("X-Pagination", JsonConvert.SerializeObject(meta));
             _logger.LogInfo($"Returned {students.TotalCount} owners from database.");
             return Ok(students);
         }

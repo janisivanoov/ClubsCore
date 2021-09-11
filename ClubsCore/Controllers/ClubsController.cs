@@ -162,7 +162,7 @@ namespace ClubsCore.Controllers
         {
             if (patchDoc != null)
             {
-                var club = CreateClub();
+                var club = UpdateClub();
 
                 patchDoc.ApplyTo(club, (Microsoft.AspNetCore.JsonPatch.Adapters.IObjectAdapter)ModelState);
 
@@ -179,19 +179,19 @@ namespace ClubsCore.Controllers
             }
         }
 
-        private Club CreateClub()
+        private Club UpdateClub()
         {
             return new Club
             {
-                Id = 5,
+                Id = 2,
                 Type = "Sport",
                 Name = "Hokkey Sharks"
             };
         }
 
-        private bool ClubExists(int id)
+        private bool ClubExists(int clubId, int studentId)
         {
-            return _context.Clubs.Any(e => e.Id == id);
+            return _context.Clubs.Any(e => e.Id == clubId) && _context.Students.Any(p => p.Id == studentId);
         }
     }
 }

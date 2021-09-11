@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace ClubsCore.Models
 {
@@ -8,7 +7,6 @@ namespace ClubsCore.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

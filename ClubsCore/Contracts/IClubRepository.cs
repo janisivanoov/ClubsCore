@@ -5,6 +5,16 @@ namespace Contracts
 {
     public interface IClubRepository : IRepositoryBase<Club>
     {
-        IEnumerable<Club> AccountsBystudent(int studentId);
+        IEnumerable<Club> AccountsByStudent(int studentId);
+
+        Club GetClubById(int clubId);
+
+        Club GetClubWithDetails(int clubId);
+
+        void CreateClub(Club club);
+
+        void UpdateClub(Club club);
+
+        void DeleteClub(Club club);
     }
 }

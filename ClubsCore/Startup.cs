@@ -1,8 +1,6 @@
 using AccountOwnerServer.Extensions;
 using ClubsCore.Mapping;
 using ClubsCore.Models;
-using ClubsCore.Models.DataManager;
-using ClubsCore.Models.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -40,8 +38,6 @@ namespace ClubsCore
                   .EnableDetailedErrors()
           );
             services.AddDbContext<ClubsContext>(opts => opts.UseSqlServer(Configuration["ConnectionString:ClubsDb"]));
-            services.AddScoped<IDataRepository<Club>, ClubManager>();
-            services.AddScoped<IDataRepository<Student>, StudentManager>();
 
             services.AddSwaggerGen(c =>
             {

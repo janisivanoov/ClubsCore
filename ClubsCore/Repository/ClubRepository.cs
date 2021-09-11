@@ -13,9 +13,36 @@ namespace Repository
         {
         }
 
-        public IEnumerable<Club> AccountsBystudent(int studentId)
+        public Club GetClubWithDetails(int clubId)
+        {
+            return FindByCondition(club => club.Id.Equals(clubId))
+                .FirstOrDefault();
+        }
+
+        public void CreateClub(Club club)
+        {
+            Create(club);
+        }
+
+        public void UpdateClub(Club club)
+        {
+            Update(club);
+        }
+
+        public void DeleteClub(Club club)
+        {
+            Delete(club);
+        }
+
+        public IEnumerable<Club> AccountsByStudent(int studentId)
         {
             return FindByCondition(a => a.Id.Equals(studentId)).ToList();
+        }
+
+        Club IClubRepository.GetClubById(int clubId)
+        {
+            return FindByCondition(club => club.Id.Equals(clubId))
+                                    .FirstOrDefault();
         }
     }
 }
