@@ -51,6 +51,15 @@ namespace ClubsCore.Controllers
             return Ok(students);
         }
 
+        //TEST
+        /*
+        [HttpGet]
+        public IActionResult GetStudentUsingFilter([FromQuery]StudentParameters studentParameters)
+        {
+            var stdu = _context.Students.GetStudentUsingFilter(studentParameters);
+        }
+        */
+
         /// <summary>
         /// GetAll
         /// </summary>
@@ -94,7 +103,7 @@ namespace ClubsCore.Controllers
         /// Post
         /// </summary>
         [HttpPost]
-        public async Task<IActionResult> PostClubAsync(Student studentPost)
+        public async Task<IActionResult> PostStudentAsync(Student studentPost)
         {
             var post_student = _context.Students
                                     .Add(studentPost);
